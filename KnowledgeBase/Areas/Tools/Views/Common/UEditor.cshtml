@@ -1,0 +1,30 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Upload</title>
+
+</head>
+<body>
+    <div style="border:1px solid #ccc;">
+        <script id="container" name="content" type="text/plain">
+            欢迎使用Ueditor.Core
+        </script>
+    </div>
+    <script src="~/lib/ueditor143/ueditor.config.js"></script>
+    <!-- 编辑器源码文件 -->
+    <script src="~/lib/ueditor143/ueditor.all.js"></script>
+
+    <script type="text/javascript">
+        var ue = UE.getEditor('container', {
+            initialFrameHeight: 500
+        });
+    </script>
+</body>
+</html>

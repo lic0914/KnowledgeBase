@@ -2,8 +2,9 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Linq;
+using System.Data;
 using System.Threading.Tasks;
-
+using Microsoft.EntityFrameworkCore;
 
 namespace KnowledgeBase.Infrastracture
 {
@@ -20,7 +21,7 @@ namespace KnowledgeBase.Infrastracture
         }
         public IEnumerable<T> GetAll()
         {
-            return GetNotDeleted().ToList();
+            return GetNotDeleted().AsNoTracking().ToList();
         }
         public async Task<int> Add(T t)
         {

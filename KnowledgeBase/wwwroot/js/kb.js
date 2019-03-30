@@ -25,6 +25,14 @@
         var ret = Ajax('post', url, data, callback);
         return ret;
     }
+    $ssb.get = function (url, data, callback) {
+        if ($.isFunction(data)) {
+            callback = data;
+            data = undefined;
+        }
+        var ret = Ajax('get', url, data, callback);
+        return ret;
+    }
     //用来返回html
     $ssb.asyncRender = function (url, data, callback) {
         if ($.isFunction(data)) {
@@ -159,7 +167,7 @@
     }
     function layerMsg(msg, callBack) {
         msg = msg == null ? "" : msg;/* layer.msg 传 null 会报错 */
-        layer.msg(msg, { time: 2000, shift: 0 }, function () {
+        layer.msg(msg, { time: 1000, shift: 0 }, function () {
             if (callBack)
                 callBack();
         });

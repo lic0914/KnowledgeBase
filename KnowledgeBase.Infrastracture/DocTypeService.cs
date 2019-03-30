@@ -19,8 +19,9 @@ namespace KnowledgeBase.Infrastracture
         {
            var e= base.GetById(id);
             e.Name = name;
-           await _ctx.SaveChangesAsync();
+            await _ctx.SaveChangesAsync();
         }
+       
         
        
     }

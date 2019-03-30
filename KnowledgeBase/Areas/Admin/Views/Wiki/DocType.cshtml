@@ -1,0 +1,63 @@
+﻿@model IEnumerable<KnowledgeBase.Infrastracture.DocType>
+@{
+    ViewData["Title"] = "DocType";
+}
+<div class="page-container">
+ 
+    <div class="cl pd-5 bg-1 bk-gray mt-20"> <span class="l"><a href="javascript:;" onclick="add()" class="btn btn-primary radius"><i class="Hui-iconfont"></i> 添加类型</a></span> <span class="r">共有数据：<strong>@Model.Count()</strong> 条</span> </div>
+    <table class="table table-border table-bordered table-bg">
+        <thead>
+            <tr>
+                <th scope="col" colspan="9">类型</th>
+            </tr>
+            <tr class="text-c">
+                <th width="40">ID</th>
+                <th width="150">名称</th>
+                <th width="130">加入时间</th>
+                <th width="100">操作</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr class="text-c">
+
+                    <td>@item.Id</td>
+                    <td>@item.Name</td>
+                    <td>@item.CreateTime</td>
+                    <td class="td-manage">
+                     <a title="编辑" href="javascript:;" onclick="update(@item.Id,'@item.Name')" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont"></i></a>
+                    <a title="删除" href="javascript:;" onclick="del(@item.Id)" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont"></i></a></td>
+                </tr>
+            }
+
+        </tbody>
+    </table>
+</div>
+@section scripts{ 
+    <script>
+        function add() {
+            layer.prompt({title:'类型名称',formType:3}, function (v,i) {
+                $kb.post('@Url.Action("OperDocType")', { name: v }, function (r) {
+                    $kb.msg(r.msg, function () { location.reload(); });
+                })
+            })
+        }
+        function update(id,name) {
+            layer.prompt({title:'类型名称',formType:3,value:name}, function (v,i) {
+                $kb.post('@Url.Action("OperDocType")', {id:id,name:v}, function (r) {
+                    $kb.msg(r.msg, function () { location.reload(); });
+                })
+            })
+        }
+        function del(id) {
+            $kb.confirm('确定删除这条数据？', function () {
+                $kb.post('@Url.Action("DelDocType")', { id: id }, function (r) {
+                    $kb.msg(r.msg, function () { location.reload(); });
+                })
+            })
+        }
+        
+    </script>
+}
+

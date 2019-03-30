@@ -1,0 +1,156 @@
+﻿@using KnowledgeBase.Models.enums;
+@{
+    ViewData["Title"] = "AddArticle";
+    var isUeType = ViewBag.type == EditType.UEditor;
+}
+@if (!isUeType)
+{
+    <link href="~/lib/editor.md/css/editormd.css" rel="stylesheet" />
+}
+<article class="page-container">
+    <form class="form form-horizontal" id="foBrm-article-add">
+        <div class="row cl">
+            <label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>文章标题：</label>
+            <div class="formControls col-xs-8 col-sm-9">
+                <input type="text" class="input-text" value="" placeholder="" id="articletitle" name="articletitle">
+            </div>
+        </div>
+
+        <div class="row cl">
+            <label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>文章分类：</label>
+            <div class="formControls col-xs-6 col-sm-7">
+                <span class="select-box">
+                    <select name="articlecolumn" class="select">
+                        <option value="0">全部栏目</option>
+                        <option value="1">新闻资讯</option>
+                        <option value="11">├行业动态</option>
+                        <option value="12">├行业资讯</option>
+                        <option value="13">├行业新闻</option>
+                    </select>
+                </span>
+            </div>
+            <div class="formControls col-xs-2 col-sm-2">
+                <input type="button" id="addnav" class="btn btn-success btn-default" value="快速添加"> 
+            </div>
+        </div>
+        <div class="row cl">
+            <label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>所属导航：</label>
+            <div class="formControls col-xs-8 col-sm-9">
+                <span class="select-box">
+                    <select name="articlecolumn" class="select">
+                        <option value="0">全部栏目</option>
+                        <option value="1">新闻资讯</option>
+                        <option value="11">├行业动态</option>
+                        <option value="12">├行业资讯</option>
+                        <option value="13">├行业新闻</option>
+                    </select>
+                </span>
+            </div>
+        </div>
+        <div class="row cl">
+            <label class="form-label col-xs-4 col-sm-2">文章内容：</label>
+            <div class="formControls col-xs-8 col-sm-9">
+                @if (isUeType)
+                {
+                    <script style="width:100%;min-height:400px;" id="container" name="content" type="text/plain">
+                        文章正文...
+                    </script>
+                }
+                else
+                {
+                    <div id="md" style="border:1px solid #ccc;width:100%;min-height:400px;">
+                        <textarea style="display:none;">[TOC]
+
+#### Disabled options
+
+- TeX (Based on KaTeX);
+- Emoji;
+- Task lists;
+- HTML tags decode;
+- Flowchart and Sequence Diagram;
+
+#### Editor.md directory
+
+    editor.md/
+            lib/
+            css/
+            scss/
+            tests/
+            fonts/
+            images/
+            plugins/
+            examples/
+            languages/     
+            editormd.js
+            ...
+
+```html
+&lt;!-- English --&gt;
+&lt;script src="../dist/js/languages/en.js"&gt;&lt;/script&gt;
+
+&lt;!-- 繁體中文 --&gt;
+&lt;script src="../dist/js/languages/zh-tw.js"&gt;&lt;/script&gt;
+```
+</textarea>
+                    </div>
+
+                }
+            </div>
+        </div>
+        <div class="row cl">
+            <div class="col-xs-8 col-sm-9 col-xs-offset-4 col-sm-offset-2">
+                <button onClick="article_save_submit();" class="btn btn-primary radius" type="submit"><i class="Hui-iconfont">&#xe632;</i> 保存并提交审核</button>
+                <button onClick="article_save();" class="btn btn-secondary radius" type="button"><i class="Hui-iconfont">&#xe632;</i> 保存草稿</button>
+                <button onClick="removeIframe();" class="btn btn-default radius" type="button">&nbsp;&nbsp;取消&nbsp;&nbsp;</button>
+            </div>
+        </div>
+    </form>
+</article>
+@section scripts{
+
+
+    @if (isUeType)
+    {
+        <script src="~/lib/ueditor143/ueditor.config.js"></script>
+        <!-- 编辑器源码文件 -->
+        <script src="~/lib/ueditor143/ueditor.all.js"></script>
+
+        <script type="text/javascript">
+            var ue = UE.getEditor('container', {
+                initialFrameHeight: 500
+            });
+        </script>
+
+    }
+    else
+    {
+        <script src="~/lib/jquery/dist/jquery.js"></script>
+        <script src="~/lib/editor.md/editormd.js"></script>
+        <script type="text/javascript">
+            var testEditor;
+
+            $(function () {
+                testEditor = editormd("md", {
+                    width: "90%",
+                    height: 640,
+                    syncScrolling: "single",
+                    path: "/lib/editor.md/lib/"
+                });
+
+                /*
+                // or
+                testEditor = editormd({
+                    id      : "test-editormd",
+                    width   : "90%",
+                    height  : 640,
+                    path    : "../lib/"
+                });
+                */
+            });
+        </script>
+
+    }
+
+}
+
+

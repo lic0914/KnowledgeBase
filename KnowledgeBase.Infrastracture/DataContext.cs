@@ -17,11 +17,8 @@ namespace KnowledgeBase.Infrastracture
             base.OnModelCreating(modelBuilder);
 
             modelBuilder.Entity<DocType>();
-            modelBuilder.Entity<Navigation>().HasOne(e => e.DocType).WithMany().HasForeignKey(e => e.DocTypeId);
             modelBuilder.Entity<Tag>().HasOne(e => e.DocType).WithMany().HasForeignKey(e => e.DocTypeId);
-            modelBuilder.Entity<Navigation>().HasOne(e => e.DocType).WithMany().HasForeignKey(e => e.DocTypeId);
             var doc = modelBuilder.Entity<Document>();
-            doc.HasOne(e => e.Navigation).WithMany().HasForeignKey(e => e.NavigationId);
 
             modelBuilder.Entity<DocumentTag>().HasKey(t => new { t.DocumentId, t.TagId });
             modelBuilder.Entity<DocumentTag>().HasOne(e => e.Tag).WithMany(e => e.DocumentTags).HasForeignKey(e => e.TagId);
@@ -30,7 +27,6 @@ namespace KnowledgeBase.Infrastracture
 
         }
         public DbSet<DocType> DocType { get; set; }
-        public DbSet<Navigation> Navigation { get; set; }
         public DbSet<Tag> Tag { get; set; }
         public DbSet<Document> Document { get; set; }
         public DbSet<DocumentTag> DocumentTag { get; set; }

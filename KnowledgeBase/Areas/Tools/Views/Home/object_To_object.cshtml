@@ -1,0 +1,76 @@
+﻿
+@{
+    ViewData["Title"] = "object_To_object";
+}
+<style>
+    
+    </style>
+<h2>object_To_object</h2>
+<div class="container">
+<div class="row cl">
+    <form method="post" action="@Url.Action("object_to_object")">
+    
+    <div class="col-xs-5">
+        <textarea style="width:100%;min-height:300px;padding:0 15px;" name="old">
+            @if (ViewBag.Old == null)
+            {
+                <text>
+public class Test
+{
+    public string Name0 {get;set;}
+
+    public string Name1 {get;set;}
+
+    public string Name2 {get;set;}
+
+    public string Name3 {get;set;}
+
+    public string Name4 {get;set;}
+
+    public string Name5 {get;set;}
+}
+</text>
+            }
+            else
+            {
+                @ViewBag.Old
+            }
+        </textarea>
+    </div>
+    <div class="col-xs-2 text-c" style="padding-top:120px;">
+        <span class="select-box">
+            <select class="select" name="type">
+                <option value="0" selected>目标类型A</option>
+                <option value="1" >目标类型B</option>
+            </select>
+        </span>
+       <button type="submit" class="btn btn-primary">转换</button>
+    </div>
+    <div class="col-xs-5">
+        <textarea style="width:100%;min-height:300px;padding:0 15px;">
+            @if (ViewBag.ToObj == null)
+            {
+                <text>
+new ToObject
+{
+    Name0=object.Name0,
+    Name1=object.Name1,
+    Name2=object.Name2,
+    Name3=object.Name3,
+    Name4=object.Name4,
+    Name5=object.Name5
+}
+</text>
+            }
+            else
+            {
+                @ViewBag.ToObj
+            }
+        </textarea>
+    </div>
+        </form>
+</div>
+<div asp-validation-summary="All" class="text-c" style="color:red">
+    
+</div>
+</div>

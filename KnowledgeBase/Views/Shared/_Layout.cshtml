@@ -4,20 +4,17 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - KnowledgeBase</title>
-
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.1/css/bootstrap.css" rel="stylesheet">
+    <link href="~/css/style.css" rel="stylesheet" />
 </head>
 <body>
-     
-    <partial name="_CookieConsentPartial" />
-
-    <div class="container body-content">
+     @Html.Partial("header.cshtml")
+    <div id="main">
         @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; 2018 - KnowledgeBase</p>
-        </footer>
     </div>
-
-    @RenderSection("Scripts", required: false)
+    <div class="footer">
+        <p style="text-align:center">Copyright© 2018 By Lic Designed</p>
+    </div>
+     @RenderSection("scripts", required: false)
 </body>
 </html>
