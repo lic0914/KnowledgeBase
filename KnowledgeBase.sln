@@ -11,7 +11,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Kb.Web", "Kb.Web\Kb.Web.csp
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KnowledgeBase.Infrastracture", "KnowledgeBase.Infrastracture\KnowledgeBase.Infrastracture.csproj", "{CF61CC78-A338-45A0-BCCC-EDA4A3251656}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KnowleageBase.ViewModel", "KnowleageBase.ViewModel\KnowleageBase.ViewModel.csproj", "{464B84A2-BF5E-4910-AF2B-3D7E918FE6F3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KnowleageBase.ViewModel", "KnowleageBase.ViewModel\KnowleageBase.ViewModel.csproj", "{464B84A2-BF5E-4910-AF2B-3D7E918FE6F3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KnowledgeBase.Domain", "KnowledgeBase.Domain\KnowledgeBase.Domain.csproj", "{CCD50710-08A6-4CEC-A393-0C5A68EC2BF2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -35,6 +37,10 @@ Global
 		{464B84A2-BF5E-4910-AF2B-3D7E918FE6F3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{464B84A2-BF5E-4910-AF2B-3D7E918FE6F3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{464B84A2-BF5E-4910-AF2B-3D7E918FE6F3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CCD50710-08A6-4CEC-A393-0C5A68EC2BF2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CCD50710-08A6-4CEC-A393-0C5A68EC2BF2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CCD50710-08A6-4CEC-A393-0C5A68EC2BF2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CCD50710-08A6-4CEC-A393-0C5A68EC2BF2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
