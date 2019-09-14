@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace KnowledgeBase.Areas.Tools
 {
-    [Area("Tools")]
+    [Area("tools")]
     public class HomeController : Controller
     {
        

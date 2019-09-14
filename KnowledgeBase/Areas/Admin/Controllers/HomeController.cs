@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace KnowledgeBase.Areas.Admin
 {
-    [Area("Admin")]
+    [Area("admin")]
     public class HomeController : Controller
     {
        

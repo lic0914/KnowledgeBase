@@ -1,9 +1,7 @@
-﻿@using KnowledgeBase.Models.enums;
-@{
+﻿@{
     ViewData["Title"] = "AddArticle";
-    var isUeType = ViewBag.type == EditType.UEditor;
 }
-@if (!isUeType)
+@if (true)
 {
     <link href="~/lib/editor.md/css/editormd.css" rel="stylesheet" />
 }
@@ -50,7 +48,7 @@
         <div class="row cl">
             <label class="form-label col-xs-4 col-sm-2">文章内容：</label>
             <div class="formControls col-xs-8 col-sm-9">
-                @if (isUeType)
+                @if (true)
                 {
                     <script style="width:100%;min-height:400px;" id="container" name="content" type="text/plain">
                         文章正文...
@@ -109,7 +107,7 @@
 @section scripts{
 
 
-    @if (isUeType)
+    @if (true)
     {
         <script src="~/lib/ueditor143/ueditor.config.js"></script>
         <!-- 编辑器源码文件 -->

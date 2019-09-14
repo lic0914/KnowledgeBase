@@ -4,18 +4,16 @@ using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using Kb.Web;
-using KnowledgeBase.Infrastracture;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.FileProviders;
-using Swashbuckle.AspNetCore.Swagger;
-using UEditor.Core;
+using Microsoft.Extensions.Hosting;
+using Microsoft.OpenApi.Models;
 
 namespace KnowledgeBase
 {
@@ -42,19 +40,19 @@ namespace KnowledgeBase
             services.AddDistributedMemoryCache();
             services.AddSession();
 
-            //services.AddScoped<IEntityService, EntityService>();
-            services.AddDbContext<DataContext>(opt =>
-                opt.UseMySql(Configuration.GetConnectionString("connStr")));
-            services.AddUEditorService();
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+            ////services.AddScoped<IEntityService, EntityService>();
+            //services.AddDbContext<DataContext>(opt =>
+            //    opt.UseMySql(Configuration.GetConnectionString("connStr")));
+            services.AddControllers();
+            services.AddRazorPages(); 
             services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1", new Info { Title = "My API", Version = "v1" });
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "My API", Version = "v1" });
             });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
             {
@@ -78,23 +76,26 @@ namespace KnowledgeBase
                     ctx.Context.Response.Headers.Append("Cache-Control", "public,max-age=36000");
                 }
             });
+            app.UseStaticFiles();
+
+            app.UseRouting();
             app.UseSwagger();
             app.UseSwaggerUI(c =>
             {
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
             });
-            app.UseStaticFiles();
             app.UseCookiePolicy();
             app.UseSession();
-            app.UseMvc(routes =>
+
+            app.UseEndpoints(endpoints =>
             {
-                routes.MapRoute(
-                    name:"area",
-                    template: "{area:exists}/{controller=Home}/{action=Index}/{id?}");
-                routes.MapRoute(
-                    name: "default",
-                    template: "{controller=Home}/{action=Index}/{id?}");
+                endpoints.MapControllers();
+
+                endpoints.MapControllerRoute("default", "{controller=Home}/{action=Index}/{id?}");
+                endpoints.MapControllerRoute("area", "{area:exists}/{controller=Home}/{action=Index}/{id?}");
             });
+
+
         }
     }
 }
